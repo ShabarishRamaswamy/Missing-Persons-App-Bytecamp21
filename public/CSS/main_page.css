@@ -1,7 +1,6 @@
 
     body{
-       background-color: #333;
-     }
+background: linear-gradient(to bottom, #011c16, #07423c,#0f665d,#27a396);    }
      h3{
        font-size: 35px;
        font-family:monospace;
