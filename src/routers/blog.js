@@ -4,22 +4,32 @@ const authenticateToken = require('../middlewares/authenticateToken')
 const Blog = require('../models/Blog')
 
 /**
- * @method - GET
+ * @method - GET || READ
  * @route - /userBlog
  * @description - User Blogs
  * @access - All 
  */
-router.get('/userBlog', authenticateToken, (req, res) => {
-    res.send('Hello!')
+router.get('/userBlogs', authenticateToken, async(req, res) => {
+    try{
+        const allBlogs = await Blog.find({ userId: req.user._id })
+        if(!allBlogs){
+            return res.send("You don't have any blogs")
+        }else{
+            return res.status(200).send(allBlogs)
+        }
+    }catch(e){
+        console.log(e)
+        res.redirect('/blogs')
+    }
 })
 
 /**
- * @method - POST
+ * @method - POST || CREATE
  * @route - /userBlog
  * @description - Creating User blog
  * @access - All 
  */
- router.get('/userBlog', authenticateToken, async(req, res) => {
+ router.post('/userBlog', authenticateToken, async(req, res) => {
     try{
         var {
             content,
@@ -35,7 +45,6 @@ router.get('/userBlog', authenticateToken, (req, res) => {
             isOfficialBlog,
             scope
         })
-
         await blog.save()
         // console.log(user)
         res.redirect('/blogs')
@@ -45,15 +54,65 @@ router.get('/userBlog', authenticateToken, (req, res) => {
     }
 })
 
+
 /**
- * @method - GET
+ * @method - PATCH || UPDATE
+ * @route - /blog/:id
+ * @description - Updating Blog
+ * @access - Blog Owner
+ */
+ router.patch('/blog/:id', authenticateToken, async(req, res) => {
+    if(req.user){
+        const blog = await Blog.find({ userId: req.params.id })
+
+
+        return res.status(200).send(allBlogs)
+    }
+})
+
+/**
+ * @method - DELETE
+ * @route - /blog/:id
+ * @description - Delete selected blog
+ * @access - Owner of Blog
+ */
+ router.delete('/blog/:id', authenticateToken, async(req, res) => {
+        const blog = await Blog.findById(req.params.id)
+        if(req.user._id == blog.userId){
+            await Blog.findById(req.params.id)
+            return res.status(200).send(blog)
+        }else{
+            return res.status(401).send("Unauthorized")
+        }
+})
+
+
+/**
+ * @method - GET || READ
  * @route - /blogs
  * @description - All Blogs
- * @access - All 
+ * @access - All
  */
- router.get('/blogs', authenticateToken, (req, res) => {
+ router.get('/blogs', authenticateToken, async(req, res) => {
     if(req.user){
-        
+        const allBlogs = await Blog.find({})
+        try{
+            var {
+                content,
+                isOfficialBlog,
+                scope
+            } = req.body
+    
+                blog.content = content,
+                blog.isOfficialBlog = isOfficialBlog,
+                blog.scope = scope
+            await blog.save()
+            // console.log(user)
+            res.redirect('/userBlogs')
+        }catch(e){
+            console.log(e)
+            res.status(500).send()
+        }
     }
 })
 

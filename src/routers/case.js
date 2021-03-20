@@ -86,7 +86,7 @@ router.get('/case', authenticateToken, (req, res) => {
  * @access - All 
  */
  router.get('/cases', authenticateToken, async(req, res) => {
-    var allCases = await Case.find()
+    var allCases = await Case.find({})
     res.send(allCases)
 })
 
@@ -97,26 +97,38 @@ router.get('/case', authenticateToken, (req, res) => {
  * @access - All 
  */
  router.get('/cases/:id', authenticateToken, async(req, res) => {
-    var allCases = await Case.find()
-    res.send(allCases)
+    var requiredCase = await Case.findById(req.params.id)
+    res.send(requiredCase)
 })
 
 /**
  * @method - POST
  * @route - /updateCaseStatus
+ * @body - Contains UpdatedStatus
  * @description - The Homepage
  * @access - All 
  */
 router.post('/updateCaseStatus/:id', authenticateToken, async(req, res) => {
+    var requiredCase = await Case.findById(req.params.id)
+    if(requiredCase.caseAuthority == req.user._id){
+        requiredCase.status = req.body.updatedStatus
+        return res.status(200).redirect(`/case/ + ${req.params.id}`)
+    }
 })
 
 /**
  * @method - POST
- * @route - /updateCaseImage
+ * @route - /addCaseImages
  * @description - The Homepage
  * @access - All 
  */
- router.post('/updateCaseImage/:id', authenticateToken, async(req, res) => {
+ router.post('/addCaseImages/:id', authenticateToken, async(req, res) => {
+    var requiredCase = await Case.findById(req.params.id)
+    if(requiredCase.caseAuthority == req.user._id){
+        requiredCase.victimImage
+        return res.status(200).redirect(`/case/ + ${req.params.id}`)
+    }
+    // More Work Here
 })
 
 /**

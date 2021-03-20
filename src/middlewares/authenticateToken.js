@@ -6,11 +6,11 @@ const authenticateToken = async(req, res, next) => {
     const token = req.session.accessToken
     if(!token){
         // console.log('No Token')
-        return res.status(400).send()
+        return res.redirect('/login')
     }
     jwt.verify(token, process.env.JWT_SECRET_TOKEN, async(err, user) => {
         if(err){
-            return res.status(403).send(err)
+            return res.redirect('/login')
         }
         const tempUser = await User.findOne({ email: user.email })
         req.user = tempUser
