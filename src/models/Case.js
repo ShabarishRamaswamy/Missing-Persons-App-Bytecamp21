@@ -1,0 +1,66 @@
+const mongoose = require('mongoose')
+const validator = require('validator')
+const { Schema } = mongoose
+
+const CaseSchema = new Schema({
+    caseNumber: {
+        type: String,
+        required: true
+    },
+    location: {
+        city: { type: String, required: true },
+        state: { type: String, required: true },
+        postalCode: { type: Number, required: true },
+        date: { type: String, required: true }
+    },
+    investigatingDepartment: {
+        type: String,
+        required: true
+    },
+    updates: {
+        type: [String],
+        required: true
+    },
+    victimMaritalStatus: {
+        type: String,
+        required: true
+    },
+    victimName: {
+        type: String,
+        required: true
+    },
+    victimGender: {
+        type: String,
+        required: true
+    },
+    reward: {
+        type: String,
+        required: true
+    },
+    victimInfo: {
+        type: String,
+        required: true
+    },
+    status:{
+        type: String,
+        enum: ['solved', 'ongoing', 'closed'],
+        required: true
+    },
+    officersInvolved: {
+        type: [String],
+        required: false,
+    },
+    moreInfoLinks: {
+        type: [String],
+        required: false
+    },
+    victimImage: {
+        img: [{ tag: { type: String }, img: {type: Buffer} }],
+        required: false
+    }
+},{ 
+    timestamps: true 
+} 
+)
+
+module.exports = mongoose.model('case', CaseSchema)
