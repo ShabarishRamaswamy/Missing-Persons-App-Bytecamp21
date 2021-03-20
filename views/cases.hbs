@@ -34,7 +34,14 @@
 </nav>
 <div class="container-fluid mb-5 mt-5">
     <div class='row mb-5'>
-
+      <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search this blog">
+                  <div class="input-group-append">
+                    <button class="btn btn-info" type="button">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div>
         {{#each allCases}}
         <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
             <div class="card bg-cust">
