@@ -1,0 +1,40 @@
+
+    body{
+       background-color: #2596be;
+     }
+     h3{
+       font-size: 35px;
+       font-family:monospace;
+     }
+     p{
+       font-size: 18px;
+       font-family:monospace;
+     }
+    .navbar{
+        margin-bottom: 0.5rem;
+    }
+    .carousel-inner img {
+        width: 100%;
+        height: 550px;
+  }
+  .tinted-image:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        );
+}
+
+footer{
+  padding:20px;
+  margin-top:20px;
+  color:#ffffff;
+  background-color: #2596be;
+  text-align: center;
+}
