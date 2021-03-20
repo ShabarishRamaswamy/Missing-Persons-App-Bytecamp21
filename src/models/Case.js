@@ -9,9 +9,9 @@ const CaseSchema = new Schema({
         text: true
     },
     location: {
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        postalCode: { type: Number, required: true }
+        city: { type: String, required: true, text: true },
+        state: { type: String, required: true, text: true },
+        postalCode: { type: Number, required: true, text: true }
     },
     date: {
         type: String, 

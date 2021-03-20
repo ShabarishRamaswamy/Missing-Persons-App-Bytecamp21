@@ -8,7 +8,6 @@ search = async(req, res, next) => {
 
     await Case.createIndexes({ 
         caseNumber: "text", 
-        // location: "text", 
         investigatingDepartment: "text", 
         victimName: "text", 
         status: "text",

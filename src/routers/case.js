@@ -114,6 +114,7 @@ router.post('/updateCaseStatus/:id', authenticateToken, async(req, res) => {
     var requiredCase = await Case.findById(req.params.id)
     if(requiredCase.caseAuthority == req.user._id){
         requiredCase.status = req.body.updatedStatus
+        await requiredCase.save()
         return res.status(200).redirect(`/case/ + ${req.params.id}`)
     }
 })

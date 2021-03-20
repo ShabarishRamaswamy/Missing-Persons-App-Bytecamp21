@@ -55,6 +55,14 @@ const UserSchema = new Schema({
     starredCases: {
         type: [String],
         required: true
+    },
+    starredCaseStudies: {
+        type: [String],
+        required: true
+    },
+    starredBlogs: {
+        type: [String],
+        required: true
     }
 },{ 
     timestamps: true 
