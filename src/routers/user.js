@@ -2,6 +2,20 @@ const express = require('express')
 var router = express.Router()
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+const passport = require('passport')
+
+const initializePassport = require('../../passport-config')
+initializePassport(
+    passport,
+    getUserByEmail = async(email) => { 
+        const user = await User.findOne({email: email})
+        return user
+    },
+    getUserById = async(id) => { 
+        const user =  await User.findById(id)
+        return user
+    }
+)
 
 /**
  * @method - GET
@@ -11,6 +25,16 @@ const bcrypt = require('bcrypt')
  */
 router.get('/register', (req, res) => {
     res.render('register.hbs')
+})
+
+router.get('/', (req, res) => {
+    if(req.isAuthenticated()){
+        res.send(req.user)
+    }else{
+        // res.redirect('/login')
+        console.log('Not Authenticated')
+        res.send('Not Authenticated')
+    }
 })
 
 
@@ -31,8 +55,7 @@ router.post('/register', async(req, res) => {
             isAuthority
         } = req.body
 
-        const salt = await bcrypt.genSaltSync()
-        var hashedPassword = await bcrypt.hashSync(password, salt)
+        var hashedPassword = await bcrypt.hash(password, 10)
 
         var user = new User({
             username,
@@ -70,21 +93,29 @@ router.post('/register', async(req, res) => {
  * @description - Login Page
  * @access - All 
  */
- router.post('/login', async(req, res) => {
-    // res.render('login.hbs')
-    try{
-        var {
-            email,
-            password
-        } = req.body
-        
-        await user.save()
-        // console.log(user)
-        // res.redirect('/login')
-        res.send('Registered')
-    }catch(e){
-        console.log(e)
-        res.status(500).send()
+//  router.post('/login', async(req, res) => {
+//     // res.render('login.hbs')
+//     try{
+//         var {
+//             email,
+//             password
+//         } = req.body
+
+//         await user.save()
+//         // console.log(user)
+//         // res.redirect('/login')
+//         res.send('Registered')
+//     }catch(e){
+//         console.log(e)
+//         res.status(500).send()
+//     }
+// })
+
+router.post('/login', passport.authenticate('local'), (req, res) => {
+    if(req.isAuthenticated()){
+        res.send(req.user)
+    }else{
+        res.send("Not")
     }
 })
 
