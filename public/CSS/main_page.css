@@ -39,7 +39,7 @@ footer{
   text-align: center;
 }
 
-input, textarea{
+input:not([type="submit"]), textarea{
     padding: 15px 20px;
     width : 100%;
     border-radius: 25px;

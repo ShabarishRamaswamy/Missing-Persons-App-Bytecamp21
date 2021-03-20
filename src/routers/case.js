@@ -103,8 +103,10 @@ router.get('/cases', authenticateToken, async (req, res) => {
  * @access - All 
  */
 router.get('/cases/:id', authenticateToken, async (req, res) => {
-    var requiredCase = await Case.findById(req.params.id)
-    res.send(requiredCase)
+    var requiredCase = await Case.findById(req.params.id).lean()
+    res.render('show.hbs', {
+        requiredCase
+    })
 })
 
 /**
