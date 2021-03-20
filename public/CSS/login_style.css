@@ -192,3 +192,11 @@ body{
         ::placeholder {
             color: #b3b3b3
         }
+
+        footer{
+            padding:20px;
+            margin-top:20px;
+            color:#ffffff;
+            background-color: #2596be;
+            text-align: center;
+        }
