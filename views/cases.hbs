@@ -22,7 +22,7 @@
         </div>
         <ul class="nav navbar-nav ml-auto">
             <li>
-                <a href="/addcase" class="btn btn-primary">
+                <a href="/addcase" class="btn btn-light">
                     Add new case
                 </a>
                 <button class="btn btn-outline-light" onclick="window.location.href='/logout'">
@@ -44,10 +44,10 @@
                     {{else}}
                     <img class="card-img-top mb-5" src="/Images/missing.svg" width='150px' height='150px' alt="Card image cap">
                     {{/if}}
-                    <div class="mb-2 card-header">
+                    <div class="mb-2 card-header" style="text-align:center;">
                         <h3 class="card-title">{{victimName}}</h3>
                     </div>
-                    <p class="card-text">
+                    <p class="card-text" style="text-align:center;">
                         {{victimInfo}}<br>
                         {{victimAge}}<br>
                         {{victimGender}}
