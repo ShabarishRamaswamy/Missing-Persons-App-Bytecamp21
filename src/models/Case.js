@@ -71,8 +71,7 @@ const CaseSchema = new Schema({
     },
     caseAuthority: {
         type: String,
-        required: true,
-        text: true
+        required: true
     },
     typeOfCase: {
         type: String,
