@@ -10,7 +10,7 @@ userLogin = async(req, res, next) => {
     // console.log(req.body.email, req.body.password)
 
     const user = await User.findOne({ email })
-    console.log(user)
+    // console.log(user)
     if(!user){
         return res.status(404).send('Cannot Find User')
     }

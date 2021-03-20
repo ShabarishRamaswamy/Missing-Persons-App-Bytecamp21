@@ -91,7 +91,7 @@ router.post('/login', authentication, (req, res) => {
     if(!req.session.accessToken){
         res.status(403).send("Unauthorized")
     }
-    console.log(req.session.accessToken)
+    // console.log(req.session.accessToken)
     res.status(201).send("Logged in")
 })
 
