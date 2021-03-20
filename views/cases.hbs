@@ -25,26 +25,34 @@
     </div>
 </nav>
 <div class="container-fluid mb-5 mt-5">
-  {{#each allCases}}
-  <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-    <div class="card bg-info">
-        <div class="card-body">
-            <img class="card-img-top mb-5" src="{{this.victimImage}}" alt="Card image cap">
-            <div class="mb-2 card-header">
-                <h3 class="card-title">{{victimName}}</h3>
-                <a class="btn btn-dark" >
-                    Learn more
-                </a>
+    <div class='row mb-5'>
+
+        {{#each allCases}}
+        <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+            <div class="card bg-info">
+                <div class="card-body">
+                    {{#if victimImage}}
+                    <img class="card-img-top mb-5" src="{{victimImage}}" alt="Card image cap">
+                    {{else}}
+                    <p>No image available</p>
+                    {{/if}}
+                    <div class="mb-2 card-header">
+                        <h3 class="card-title">{{victimName}}</h3>
+                    </div>
+                    <p class="card-text">
+                        {{victimInfo}}<br>
+                        {{victimAge}}<br>
+                        {{victimGender}}
+                    </p>
+                    <a class="btn btn-dark">
+                        Learn more
+                    </a>
+                </div>
             </div>
-            <p class="collapse card-text">
-                {{victimInfo}}<br>
-                {{victimAge}}<br>
-                {{victimGender}}
-            </p>
         </div>
+        {{else}}
+        <p>No cases to display</p>
+        {{/each}}
+        
     </div>
-  </div>
-{{else}}
-<p>No cases to display</p>
-{{/each}}
 </div>
