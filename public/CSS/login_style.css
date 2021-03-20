@@ -1,16 +1,14 @@
 
 body{
-        background: linear-gradient(to bottom, #000,#012021,#07484a,#106669,#129094,#1cb3b8,#22dde3);
+        background: #2596be;
         align-items: center;
         }
         .login-box {
-            width: 70%;
+            width: 100%;
             margin: auto;
             min-width: 385px;
             min-height: 580px;
             position: relative;
-            margin-top: 20px;
-
         }
 
         .login-snip {
