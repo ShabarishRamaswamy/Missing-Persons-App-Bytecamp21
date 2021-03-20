@@ -13,7 +13,11 @@ const authenticateToken = require('../middlewares/authenticateToken')
  * @access - All 
  */
 router.get('/', (req, res) => {
-    res.send("Homepage")
+    if(req.session.accessToken){
+        res.render('home.hbs')
+    }else{
+        res.redirect('/login')
+    }
 })
 
 /**
@@ -92,7 +96,7 @@ router.post('/login', authentication, (req, res) => {
         res.status(403).send("Unauthorized")
     }
     // console.log(req.session.accessToken)
-    res.status(201).send("Logged in")
+    res.redirect('/')
 })
 
 /**
