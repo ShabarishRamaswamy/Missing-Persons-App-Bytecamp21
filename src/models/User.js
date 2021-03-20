@@ -54,6 +54,10 @@ const UserSchema = new Schema({
     isAuthority: {
         type: Boolean,
         default: false
+    },
+    starredCases: {
+        type: [String],
+        required: true
     }
 },{ 
     timestamps: true 

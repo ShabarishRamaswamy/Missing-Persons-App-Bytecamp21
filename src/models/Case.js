@@ -41,6 +41,10 @@ const CaseSchema = new Schema({
         type: String,
         required: true
     },
+    victimAge: {
+        type: Number,
+        required: true
+    },
     status:{
         type: String,
         enum: ['solved', 'ongoing', 'closed'],

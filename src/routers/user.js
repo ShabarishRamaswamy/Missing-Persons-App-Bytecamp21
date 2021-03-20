@@ -1,6 +1,7 @@
 const express = require('express')
 var router = express.Router()
 const User = require('../models/User')
+const bcrypt = require('bcrypt')
 
 /**
  * @method - GET
@@ -43,13 +44,13 @@ router.post('/register', async(req, res) => {
         })
 
         await user.save()
-        console.log(user)
-        res.redirect('/login')
+        // console.log(user)
+        // res.redirect('/login')
+        res.send('Registered')
     }catch(e){
         console.log(e)
         res.status(500).send()
     }
-
 })
 
 
@@ -63,7 +64,29 @@ router.post('/register', async(req, res) => {
     res.render('login.hbs')
 })
 
-
+/**
+ * @method - GET
+ * @route - /login
+ * @description - Login Page
+ * @access - All 
+ */
+ router.post('/login', async(req, res) => {
+    // res.render('login.hbs')
+    try{
+        var {
+            email,
+            password
+        } = req.body
+        
+        await user.save()
+        // console.log(user)
+        // res.redirect('/login')
+        res.send('Registered')
+    }catch(e){
+        console.log(e)
+        res.status(500).send()
+    }
+})
 
 
 module.exports = router
