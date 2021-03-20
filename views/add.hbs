@@ -1,0 +1,108 @@
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
+    <a href="#" class="navbar-brand">Missing Persons Portal</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse4">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse4">
+        <div class="navbar-nav">
+            <a href="/" class="nav-item nav-link">Home</a>
+            <a href="#" class="nav-item nav-link">Blog</a>
+            <a href="/cases" class="nav-item nav-link active">Cases</a>
+            <a href="#" class="nav-item nav-link">Case Studies</a>
+
+        </div>
+        <ul class="nav navbar-nav ml-auto">
+            <li>
+                <button class="btn btn-outline-light">
+                    <b>LOGOUT</b>
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mt-5 mb-5">Add new case</h2>
+    <form action="/case" method="POST">
+        <div class="mb-3 group">
+            <label class="label">Victim Name</label>
+            <br>
+            <input class="input" type="text" name="victimName" placeholder="John Doe">
+        </div>
+        <div class="mb-3">
+            <label class="label">Victim Gender</label>
+            <br>
+            <input type="text" name="victimGender" class="input" placeholder="Male">
+        </div>
+        <div class="mb-3">
+            <label class="label">Victim Marital Status</label>
+            <br>
+            <input type="text" name="victimMaritalStatus" class="input"placeholder="Single">
+        </div>
+        <div class="mb-3">
+            <label class="label">Victim Age</label>
+            <br>
+            <input type="number" name="victimAge" class="input" placeholder="22">
+        </div>
+        <div class="mb-3">
+            <label class="label">Victim Info</label>
+            <br>
+            <textarea class="input" name="victimInfo" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="label">Victim Image</label>
+            <br>
+            <input class="input" id="formFile" type="file" name="victimImage" accept="image/png, image/jpeg">
+        </div>
+        <div class="mb-3">
+            <label class="label">Case Number</label>
+            <br>
+            <input type="number" name="caseNumber" class="input" placeholder="42069">
+        </div>
+        <div class="mb-3">
+            <label class="label">City</label>
+            <br>
+            <input type="text" name="city" class="input" placeholder="New York">
+        </div>
+        <div class="mb-3">
+            <label class="label">State</label>
+            <br>
+            <input type="text" name="state" class="input" placeholder="Massachusets">
+        </div>
+        <div class="mb-3">
+            <label class="label">Postal Code</label>
+            <br>
+            <input type="number" name="postalCode" class="input" placeholder="22">
+        </div>
+        <div class="mb-3">
+            <label class="label">Date</label>
+            <br>
+            <input type="text" name="date" class="input" placeholder="19th March 2021">
+        </div>
+        <div class="mb-3">
+            <label class="label">Investigating Department</label>
+            <br>
+            <input type="text" name="investigatingDepartment" class="input" placeholder="NYPD">
+        </div>
+        <div class="mb-3">
+            <label class="label">Reward</label>
+            <br>
+            <input type="number" name="reward" class="input" placeholder="$1000">
+        </div>
+        <div class="mb-3">
+            <label class="label">Status</label>
+            <br>
+            <input type="text" name="status" class="input" placeholder="solved,ongoing,closed">
+        </div>
+        <div class="mb-3">
+            <label class="label">Update</label>
+            <br>
+            <input type="text" name="update" class="input">
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="button btn btn-primary" value="Submit">
+        </div>
+    </form>
+</div>
