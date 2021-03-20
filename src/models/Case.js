@@ -45,7 +45,7 @@ const CaseSchema = new Schema({
     },
     victimInfo: {
         type: String,
-        required: true
+        required: false
     },
     victimAge: {
         type: Number,
@@ -66,7 +66,7 @@ const CaseSchema = new Schema({
         required: false
     },
     images: {
-        img: [{ tag: { type: String }, img: { type: Buffer } }],
+        type: [String],
         required: false
     },
     caseAuthority: {

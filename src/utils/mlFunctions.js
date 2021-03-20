@@ -31,6 +31,17 @@ const authenticateToken = require('../middlewares/authenticateToken')
 
 /**
  * @method - GET
+ * @route - /ml/cases/prediction
+ * @description - Prediction of Files
+ * @access - All 
+ */
+ router.get('/ml/cases/prediction', async (req, res) => {
+    const prediction = req.body
+    res.status(200).send(prediction)
+})
+
+/**
+ * @method - GET
  * @route - /ml/starredCases
  * @description - Get all cases for ML
  * @access - All 
@@ -40,6 +51,21 @@ const authenticateToken = require('../middlewares/authenticateToken')
     var allStarred = []
     users.forEach((user) => {
         allStarred.push({ userId: user._id, starred: user.starredCases })
+    })
+    res.send(allStarred)
+})
+
+/**
+ * @method - GET
+ * @route - /ml/nonStarredCases
+ * @description - Get all cases for ML
+ * @access - All 
+ */
+ router.get('/ml/nonStarredCases', async (req, res) => {
+    var users = await User.find()
+    var nonStarred = []
+    users.forEach((user) => {
+        nonStarred.push({ userId: user._id, starred: user.starredCases })
     })
     res.send(allStarred)
 })

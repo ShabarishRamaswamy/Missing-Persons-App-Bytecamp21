@@ -82,7 +82,7 @@ router.post("/case", authenticateToken, async (req, res) => {
     res.redirect("/cases");
   } catch (e) {
     console.log(e);
-    res.send(400).send();
+    res.status(400).send();
   }
 });
 
@@ -159,34 +159,32 @@ router.get("/myCases", authenticateToken, async (req, res) => {
 
 /**
  * @method - POST
- * @route - /upload/:id
+ * @route - /case/upload/:id
  * @description - The Homepage
  * @access - All
  */
-router.post("/upload/:id", multerUploads, async (req, res) => {
+router.post("/case/upload/:id", multerUploads, async(req, res) => {
     //authenticateToken
   try {
+    const userCase = await Case.findById(req.params.id)
+    // if(req.params.caseAuthority == req.user._id){}
       if (req.file) {
-        const file = dataUri(req);
+        const file = dataUri(req).content;
         return uploader
           .upload(file)
-          .then((result) => {
-            const image = result.url;
+          .then(async(result) => {
+            var image = result.url;
+            console.log(image)
+            userCase.images.push(image)
+            await userCase.save()
             return res
               .status(200)
-              .json({
-                messge:
-                  "Your image has been uploded successfully to cloudinary",
-                data: { image },
-              });
+              .send({ data: {image} })
           })
-          .catch((err) =>
-            res
-              .status(400)
-              .json({
-                messge: "someting went wrong while processing your request",
-                data: { err },
-              })
+          .catch((err) =>{
+            console.log(err)
+            res.status(400).send()
+          }
           );
       }else{
           res.status(400).send()

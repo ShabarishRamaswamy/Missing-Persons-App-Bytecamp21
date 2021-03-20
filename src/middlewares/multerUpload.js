@@ -12,9 +12,8 @@ const dUri = new DatauriParser();
  * */ 
 
 const dataUri = req => {
-  var content = dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
   // console.log(content)
-  return path.extname(req.file.originalname).toString()
+  return dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
 }
   
 module.exports = { multerUploads, dataUri };
