@@ -73,6 +73,11 @@ const CaseSchema = new Schema({
         type: String,
         required: true,
         text: true
+    },
+    typeOfCase: {
+        type: String,
+        default: "Robbery",
+        required: true
     }
 },{ 
     timestamps: true 

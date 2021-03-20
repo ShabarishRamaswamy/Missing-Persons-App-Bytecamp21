@@ -32,15 +32,15 @@ search = async(req, res, next) => {
 
     
     // Finding from Case
-    results[1] = (await Case.find( { $text: { $search: req.params.query } } ))
+    results[1] = await Case.find( { $text: { $search: req.params.query } } )
 
     
     // Finding from Blog
-    results[2] = (await Blog.find( { $text: { $search: req.params.query } } ))
+    results[2] = await Blog.find( { $text: { $search: req.params.query } } )
 
     
     // Finding from CaseStudy
-    results[3] = (await CaseStudy.find( { $text: { $search: req.params.query } } ))
+    results[3] = await CaseStudy.find( { $text: { $search: req.params.query } } )
     
     req.results = results
     next()

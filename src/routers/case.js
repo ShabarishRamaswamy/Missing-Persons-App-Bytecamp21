@@ -47,7 +47,8 @@ router.get('/case', authenticateToken, (req, res) => {
             status,
             officersInvolved,
             moreInfoLinks,
-            victimImage
+            victimImage,
+            typeOfCase
         } = req.body
 
         const newCase = new Case({
@@ -70,7 +71,8 @@ router.get('/case', authenticateToken, (req, res) => {
             officersInvolved,
             moreInfoLinks,
             victimImage,
-            caseAuthority: req.user._id
+            caseAuthority: req.user._id,
+            typeOfCase
         })
 
         await newCase.save()

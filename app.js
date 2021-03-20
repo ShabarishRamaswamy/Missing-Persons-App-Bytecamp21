@@ -52,7 +52,7 @@ app.use(caseRouter)
 app.use(caseStudyRouter)
 app.use(userRouter)
 app.use(starRouter)
-require('./passport-config')
+// require('./passport-config')
 
 app.listen(PORT, ()=> {
     console.log('App running on port: ' + PORT)
