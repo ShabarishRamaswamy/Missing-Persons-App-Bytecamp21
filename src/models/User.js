@@ -40,7 +40,7 @@ const UserSchema = new Schema({
         required: false
     },
     avatar: {
-        type: Buffer,
+        type: String,
         required: false
     },
     phoneNumber: {

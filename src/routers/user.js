@@ -9,10 +9,10 @@ const passport = require('passport')
 const authentication = require('../middlewares/authentication')
 const authenticateToken = require('../middlewares/authenticateToken')
 const search = require('../utils/search')
-const { urlencoded, json } = require('body-parser');
-const { resolve } = require('path');
-const { uploader, cloudinaryConfig } = require('../utils/cloudinaryConfig')
-
+const { urlencoded, json } = require("body-parser");
+const { resolve } = require("path");
+const { uploader, cloudinaryConfig } = require("../utils/cloudinaryConfig");
+const { multerUploads, dataUri } = require('../middlewares/multerUpload');
 
 /**
  * @method - GET
@@ -189,5 +189,42 @@ router.post('/login', authentication, (req, res) => {
  router.get('/search/:query', authenticateToken, search, async(req, res) => {
     res.send(req.results)
 })
+
+/**
+ * @method - POST
+ * @route - /user/avatar
+ * @description - POST user avatar
+ * @access - All 
+ */
+ router.post('/user/avatar', authenticateToken, multerUploads, async(req, res) => {
+    try {
+        // if(req.params.caseAuthority == req.user._id){}
+          if (req.file) {
+            const file = dataUri(req).content;
+            return uploader
+              .upload(file)
+              .then(async(result) => {
+                var image = result.url;
+                console.log(image)
+                req.user = image
+                await req.user.save()
+                return res
+                  .status(200)
+                  .send({ data: {image} })
+              })
+              .catch((err) =>{
+                console.log(err)
+                res.status(400).send()
+              }
+              );
+          }else{
+              res.status(400).send()
+          }
+      } catch (e) {
+          console.log(e)
+          res.status(500).send()
+      }
+})
+
 
 module.exports = router
