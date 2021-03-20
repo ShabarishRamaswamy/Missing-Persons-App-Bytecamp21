@@ -24,7 +24,9 @@ initializePassport(
  * @access - All 
  */
 router.get('/register', (req, res) => {
-    res.render('register.hbs')
+    res.render('./../../views/signup.hbs', {
+        layout: 'register'
+    })
 })
 
 router.get('/', (req, res) => {
@@ -84,9 +86,13 @@ router.post('/register', async(req, res) => {
  * @description - Login Page
  * @access - All 
  */
- router.get('/login', (req, res) => {
-    res.render('login.hbs')
+
+router.get('/register', (req, res) => {
+    res.render('./../../views/login.hbs', {
+        layout: 'register'
+    })
 })
+
 
 /**
  * @method - GET

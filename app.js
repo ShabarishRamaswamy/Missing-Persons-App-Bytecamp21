@@ -23,6 +23,9 @@ app.use(session({
     saveUninitialized: false
 }))
 
+// Static folder
+app.use(express.static(path.join(__dirname, 'public')))
+
 // Handlebars
 app.set('view-engine', 'hbs')
 app.engine('hbs', handlebars({
