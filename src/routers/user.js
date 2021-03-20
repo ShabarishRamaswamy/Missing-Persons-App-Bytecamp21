@@ -173,7 +173,7 @@ router.post('/login', authentication, (req, res) => {
  */
  router.get('/logout', authenticateToken, async(req, res) => {
     await req.session.destroy()
-    res.redirect('')
+    res.redirect('/')
 })
 
 /**
