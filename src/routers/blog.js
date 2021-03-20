@@ -33,7 +33,6 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
     try{
         var {
             content,
-            isAuthority,
             isOfficialBlog,
             scope
         } = req.body
@@ -41,7 +40,7 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
         var blog = new Blog({
             userId: req.user._id,
             content,
-            isAuthority,
+            isAuthority: req.user.isAuthority,
             isOfficialBlog,
             scope
         })
@@ -62,11 +61,34 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
  * @access - Blog Owner
  */
  router.patch('/blog/:id', authenticateToken, async(req, res) => {
-    if(req.user){
-        const blog = await Blog.find({ userId: req.params.id })
+    var blog = Blog.findById(req.params.id)
+    if(blog.userId === req.user._id){
+        try{
+            var {
+                title,
+                content,
+                isOfficialBlog,
+                scope
+            } = req.body
+    
+            var blog = Blog.findById(req.params.id)
 
+            if(title)
+            blog.title = title,
+            blog.content = content,
+            blog.isOfficialBlog = isOfficialBlog,
+            blog.scope = scope
 
-        return res.status(200).send(allBlogs)
+            await blog.save()
+
+            return res.status(200).send()
+        }catch(e){
+            console.log(e)
+            res.status(500).send()
+        }
+    }else{
+        console.log(e)
+        res.status(500).send()
     }
 })
 
@@ -112,7 +134,7 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
                 if(scope)
                 blog.scope = scope
 
-            await blog.save()
+            await allBlogs.save()
             // console.log(user)
             res.redirect('/userBlogs')
         }catch(e){
