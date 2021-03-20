@@ -79,7 +79,7 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
  router.delete('/blog/:id', authenticateToken, async(req, res) => {
         const blog = await Blog.findById(req.params.id)
         if(req.user._id == blog.userId){
-            await Blog.findById(req.params.id)
+            await Blog.findByIdAndDelete(req.params.id)
             return res.status(200).send(blog)
         }else{
             return res.status(401).send("Unauthorized")
@@ -102,10 +102,16 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
                 isOfficialBlog,
                 scope
             } = req.body
-    
-                blog.content = content,
-                blog.isOfficialBlog = isOfficialBlog,
+
+                if(content)
+                blog.content = content
+
+                if(isOfficialBlog)
+                blog.isOfficialBlog = isOfficialBlog
+
+                if(scope)
                 blog.scope = scope
+
             await blog.save()
             // console.log(user)
             res.redirect('/userBlogs')
