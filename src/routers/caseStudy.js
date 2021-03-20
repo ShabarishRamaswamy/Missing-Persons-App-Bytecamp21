@@ -5,8 +5,8 @@ const authenticateToken = require('../middlewares/authenticateToken')
 
 /**
  * @method - GET
- * @route - /
- * @description - The Homepage
+ * @route - /caseStudies
+ * @description - Get all Case Studies
  * @access - All 
  */
 router.get('/caseStudies', (req, res) => {

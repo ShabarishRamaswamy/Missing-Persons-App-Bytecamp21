@@ -6,7 +6,8 @@ const UserSchema = new Schema({
     username: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        text: true
     },
     age: {
         type: Number,
@@ -45,11 +46,7 @@ const UserSchema = new Schema({
     phoneNumber: {
         type: Number,
         unique: true,
-        // validator(value){
-        //     if(validator.isMobilePhone(value, ['en-IN']) === false){
-        //         throw new Error("Please provide a valid Phone number")
-        //     }
-        // }
+        text: true
     },
     isAuthority: {
         type: Boolean,

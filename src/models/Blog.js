@@ -9,7 +9,8 @@ const blogSchema = new Schema({
     },
     content: {
         type: String,
-        required: true
+        required: true,
+        text: true
     },
     isAuthority: {
         type: Boolean,
@@ -24,7 +25,8 @@ const blogSchema = new Schema({
     scope:{
         type: String,
         required: true,
-        enum: ["statusUpdate"]
+        enum: ["statusUpdate"],
+        text: true
     }
 },{ 
     timestamps: true 

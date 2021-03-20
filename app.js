@@ -8,6 +8,8 @@ const session = require('express-session')
 const passport = require('passport')
 const handlebars = require('express-handlebars');
 const path = require('path');
+const mongoose = require('mongoose')
+mongoose.set('useCreateIndex', true);
 
 // Declaring Variables
 const PORT = process.env.PORT || 5000

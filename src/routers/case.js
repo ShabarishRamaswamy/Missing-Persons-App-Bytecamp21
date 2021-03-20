@@ -25,7 +25,7 @@ router.get('/case', authenticateToken, (req, res) => {
  * @description - The Homepage
  * @access - All 
  */
- router.post('/case', authenticateToken, (req, res) => {
+ router.post('/case', authenticateToken, async(req, res) => {
     if(!req.user.isAuthority){
         return res.status(401).send("Only Authority can add Cases")
     }
@@ -72,6 +72,8 @@ router.get('/case', authenticateToken, (req, res) => {
             victimImage,
             caseAuthority: req.user._id
         })
+
+        await newCase.save()
         res.status(201).send(newCase)
     }catch(e){
         console.log(e)

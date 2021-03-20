@@ -5,12 +5,13 @@ const { Schema } = mongoose
 const CaseSchema = new Schema({
     caseNumber: {
         type: String,
-        required: true
+        required: true,
+        text: true
     },
     location: {
         city: { type: String, required: true },
         state: { type: String, required: true },
-        postalCode: { type: Number, required: true },
+        postalCode: { type: Number, required: true }
     },
     date: {
         type: String, 
@@ -18,7 +19,8 @@ const CaseSchema = new Schema({
     },
     investigatingDepartment: {
         type: String,
-        required: true
+        required: true,
+        text: true
     },
     updates: {
         type: [String],
@@ -30,7 +32,8 @@ const CaseSchema = new Schema({
     },
     victimName: {
         type: String,
-        required: true
+        required: true,
+        text: true
     },
     victimGender: {
         type: String,
@@ -51,7 +54,8 @@ const CaseSchema = new Schema({
     status:{
         type: String,
         enum: ['solved', 'ongoing', 'closed'],
-        required: true
+        required: true,
+        text: true
     },
     officersInvolved: {
         type: [String],
@@ -67,7 +71,8 @@ const CaseSchema = new Schema({
     },
     caseAuthority: {
         type: String,
-        required: true
+        required: true,
+        text: true
     }
 },{ 
     timestamps: true 

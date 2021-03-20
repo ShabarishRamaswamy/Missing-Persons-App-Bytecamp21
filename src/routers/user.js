@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const authentication = require('../middlewares/authentication')
 const authenticateToken = require('../middlewares/authenticateToken')
+const search = require('../utils/search')
 
 /**
  * @method - GET
@@ -107,6 +108,27 @@ router.post('/login', authentication, (req, res) => {
  */
  router.get('/profile', authenticateToken, (req, res) => {
     res.send(req.user)
+})
+
+/**
+ * @method - GET
+ * @route - /logout
+ * @description - UserProfile
+ * @access - All 
+ */
+ router.get('/logout', authenticateToken, async(req, res) => {
+    await req.session.destroy()
+    res.redirect('')
+})
+
+/**
+ * @method - GET
+ * @route - /search/:query
+ * @description - UserProfile
+ * @access - All 
+ */
+ router.get('/search/:query', authenticateToken, search, async(req, res) => {
+    res.send(req.results)
 })
 
 module.exports = router
