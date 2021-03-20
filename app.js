@@ -44,6 +44,7 @@ const caseRouter = require('./src/routers/case')
 const caseStudyRouter = require('./src/routers/caseStudy')
 const userRouter = require('./src/routers/user')
 const starRouter = require('./src/utils/starStuff')
+const mlRouter = require('./src/utils/mlFunctions')
 
 // App config
 app.use(authorityRouter)
@@ -52,6 +53,7 @@ app.use(caseRouter)
 app.use(caseStudyRouter)
 app.use(userRouter)
 app.use(starRouter)
+app.use(mlRouter)
 // require('./passport-config')
 
 app.listen(PORT, ()=> {
