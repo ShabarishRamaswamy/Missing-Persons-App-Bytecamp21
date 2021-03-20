@@ -9,7 +9,8 @@ const blogSchema = new Schema({
     },
     title: {
         type: String,
-        required: true
+        required: true,
+        text: true
     },
     content: {
         type: String,
