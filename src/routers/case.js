@@ -9,7 +9,13 @@ const Case = require('../models/Case')
  * @access - All 
  */
 router.get('/case', (req, res) => {
-    res.send('Hello!')
+    if(req.session.userUniqueID){
+        console.log(req.session.userUniqueID)
+        res.send('Hello!')
+    }else{
+        res.send('No Hello')
+    }
+    
 })
 
 /**
@@ -84,10 +90,10 @@ router.get('/case', (req, res) => {
  * @description - Get all cases
  * @access - All 
  */
-//  router.get('/cases/:id', async(req, res) => {
-//     var allCases = await Case.find()
-//     res.send(allCases)
-// })
+ router.get('/cases/:id', async(req, res) => {
+    var allCases = await Case.find()
+    res.send(allCases)
+})
 
 
 module.exports = router
