@@ -7,7 +7,7 @@ require('./src/db/mongoose')
 const session = require('express-session')
 const passport = require('passport')
 const handlebars = require('express-handlebars');
-
+const path = require('path');
 
 // Declaring Variables
 const PORT = process.env.PORT || 5000
