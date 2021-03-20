@@ -3,6 +3,10 @@ const validator = require('validator')
 const { Schema } = mongoose
 
 const CaseStudySchema = new Schema({
+    userId: {
+        type: String,
+        required: true
+    },
     events: {
         type: String,
         required: true
