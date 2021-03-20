@@ -1,5 +1,6 @@
 const express = require('express')
 var router = express.Router()
+const authenticateToken = require('../middlewares/authenticateToken')
 
 /**
  * @method - GET
@@ -7,7 +8,7 @@ var router = express.Router()
  * @description - The Homepage
  * @access - All 
  */
-router.get('/blog', (req, res) => {
+router.get('/blog', authenticateToken, (req, res) => {
     res.send('Hello!')
 })
 

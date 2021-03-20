@@ -1,6 +1,7 @@
 const express = require('express')
 var router = express.Router()
 const Case = require('../models/Case')
+const authenticateToken = require('../middlewares/authenticateToken')
 
 /**
  * @method - GET
@@ -8,9 +9,9 @@ const Case = require('../models/Case')
  * @description - The Homepage
  * @access - All 
  */
-router.get('/case', (req, res) => {
-    if(req.session.userUniqueID){
-        console.log(req.session.userUniqueID)
+router.get('/case', authenticateToken, (req, res) => {
+    if(req.user){
+        console.log(req.user)
         res.send('Hello!')
     }else{
         res.send('No Hello')
@@ -24,26 +25,29 @@ router.get('/case', (req, res) => {
  * @description - The Homepage
  * @access - All 
  */
- router.post('/case', (req, res) => {
+ router.post('/case', authenticateToken, (req, res) => {
+    if(!req.user.isAuthority){
+        return res.status(401).send("Only Authority can add Cases")
+    }
     try{
         var {
-        caseNumber, // Case Number assigned by the Authority.
-        city,
-        state,
-        postalCode,
-        date,
-        investigatingDepartment,
-        update,
-        victimMaritalStatus,
-        victimName,
-        victimGender,
-        reward,
-        victimInfo,
-        victimAge,
-        status,
-        officersInvolved,
-        moreInfoLinks,
-        victimImage
+            caseNumber, // Case Number assigned by the Authority.
+            city,
+            state,
+            postalCode,
+            date,
+            investigatingDepartment,
+            update,
+            victimMaritalStatus,
+            victimName,
+            victimGender,
+            reward,
+            victimInfo,
+            victimAge,
+            status,
+            officersInvolved,
+            moreInfoLinks,
+            victimImage
         } = req.body
 
         const newCase = new Case({
@@ -65,10 +69,12 @@ router.get('/case', (req, res) => {
             status,
             officersInvolved,
             moreInfoLinks,
-            victimImage
+            victimImage,
+            caseAuthority: req.user._id
         })
         res.status(201).send(newCase)
     }catch(e){
+        console.log(e)
         res.send(400).send()
     }
 })
@@ -79,7 +85,7 @@ router.get('/case', (req, res) => {
  * @description - Get all cases
  * @access - All 
  */
- router.get('/cases', async(req, res) => {
+ router.get('/cases', authenticateToken, async(req, res) => {
     var allCases = await Case.find()
     res.send(allCases)
 })
@@ -90,10 +96,37 @@ router.get('/case', (req, res) => {
  * @description - Get all cases
  * @access - All 
  */
- router.get('/cases/:id', async(req, res) => {
+ router.get('/cases/:id', authenticateToken, async(req, res) => {
     var allCases = await Case.find()
     res.send(allCases)
 })
 
+/**
+ * @method - POST
+ * @route - /updateCaseStatus
+ * @description - The Homepage
+ * @access - All 
+ */
+router.post('/updateCaseStatus/:id', authenticateToken, async(req, res) => {
+})
 
+/**
+ * @method - POST
+ * @route - /updateCaseImage
+ * @description - The Homepage
+ * @access - All 
+ */
+ router.post('/updateCaseImage/:id', authenticateToken, async(req, res) => {
+})
+
+/**
+ * @method - GET
+ * @route - /myCases
+ * @description - The Homepage
+ * @access - All 
+ */
+ router.get('/myCases', authenticateToken, async(req, res) => {
+    const cases = Case.find({ caseAuthority: req.user._id })
+    res.status(200).send(cases)
+})
 module.exports = router

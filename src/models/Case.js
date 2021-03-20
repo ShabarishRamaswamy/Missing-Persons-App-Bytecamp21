@@ -11,7 +11,10 @@ const CaseSchema = new Schema({
         city: { type: String, required: true },
         state: { type: String, required: true },
         postalCode: { type: Number, required: true },
-        date: { type: String, required: true }
+    },
+    date: {
+        type: String, 
+        required: true 
     },
     investigatingDepartment: {
         type: String,
@@ -59,8 +62,12 @@ const CaseSchema = new Schema({
         required: false
     },
     victimImage: {
-        img: [{ tag: { type: String }, img: {type: Buffer} }],
+        img: [{ tag: { type: String }, img: { type: Buffer } }],
         required: false
+    },
+    caseAuthority: {
+        type: String,
+        required: true
     }
 },{ 
     timestamps: true 
