@@ -1,3 +1,10 @@
+<style>
+.bg-cust{
+  background: transparent;
+  border: 1px outset #06cdd4;
+}
+</style>
+
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
     <a href="#" class="navbar-brand">Missing Persons Portal</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse4">
@@ -29,7 +36,7 @@
 
         {{#each allCases}}
         <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-            <div class="card bg-info">
+            <div class="card bg-cust">
                 <div class="card-body">
                     {{#if victimImage}}
                     <img class="card-img-top mb-5" src="{{victimImage}}" alt="Card image cap">
