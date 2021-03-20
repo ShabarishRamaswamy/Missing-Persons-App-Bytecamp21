@@ -13,7 +13,7 @@ const authenticateToken = require('../middlewares/authenticateToken')
  * @access - All 
  */
 router.get('/', (req, res) => {
-    res.send("Homepage")
+    res.render('home.hbs')
 })
 
 /**
