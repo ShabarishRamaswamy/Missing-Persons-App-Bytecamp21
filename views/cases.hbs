@@ -38,16 +38,16 @@
         {{#each allCases}}
         <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
             <div class="card bg-cust">
-                <div class="card-body">
+                <div class="card-body" style="text-align:center;">
                     {{#if victimImage}}
                     <img class="card-img-top mb-5" src="{{victimImage}}" alt="Card image cap">
                     {{else}}
                     <img class="card-img-top mb-5" src="/Images/missing.svg" width='150px' height='150px' alt="Card image cap">
                     {{/if}}
-                    <div class="mb-2 card-header" style="text-align:center;">
+                    <div class="mb-2 card-header" >
                         <h3 class="card-title">{{victimName}}</h3>
                     </div>
-                    <p class="card-text" style="text-align:center;">
+                    <p class="card-text">
                         {{victimInfo}}<br>
                         {{victimAge}}<br>
                         {{victimGender}}
