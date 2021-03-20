@@ -10,6 +10,8 @@ const handlebars = require('express-handlebars');
 const path = require('path');
 const mongoose = require('mongoose')
 mongoose.set('useCreateIndex', true);
+require('./src/utils/cloudinaryConfig')
+const cloudinary = require("cloudinary").v2;
 
 // Declaring Variables
 const PORT = process.env.PORT || 5000
@@ -24,6 +26,12 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')))
@@ -55,6 +63,7 @@ app.use(userRouter)
 app.use(starRouter)
 app.use(mlRouter)
 // require('./passport-config')
+
 
 app.listen(PORT, ()=> {
     console.log('App running on port: ' + PORT)

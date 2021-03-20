@@ -9,6 +9,10 @@ const passport = require('passport')
 const authentication = require('../middlewares/authentication')
 const authenticateToken = require('../middlewares/authenticateToken')
 const search = require('../utils/search')
+const { urlencoded, json } = require('body-parser');
+const { resolve } = require('path');
+const { uploader, cloudinaryConfig } = require('../utils/cloudinaryConfig')
+
 
 /**
  * @method - GET

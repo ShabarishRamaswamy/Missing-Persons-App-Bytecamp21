@@ -65,7 +65,7 @@ const CaseSchema = new Schema({
         type: [String],
         required: false
     },
-    victimImage: {
+    images: {
         img: [{ tag: { type: String }, img: { type: Buffer } }],
         required: false
     },
