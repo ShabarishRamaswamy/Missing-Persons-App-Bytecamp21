@@ -28,6 +28,7 @@ router.get('/register', (req, res) => {
 })
 
 router.get('/', (req, res) => {
+    console.log(req.user)
     if(req.isAuthenticated()){
         res.send(req.user)
     }else{
@@ -113,6 +114,7 @@ router.post('/register', async(req, res) => {
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
     if(req.isAuthenticated()){
+        console.log(req.body)
         res.send(req.user)
     }else{
         res.send("Not")
