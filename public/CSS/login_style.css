@@ -1,6 +1,6 @@
 
 body{
-        background: #2596be;
+        background: linear-gradient(to bottom,#000000,#2596be);
         align-items: center;
         }
         .login-box {
@@ -17,7 +17,7 @@ body{
             position: absolute;
             padding: 90px 70px 50px 70px;
             background: rgba(0, 0, 0, .55);
-            overflow-x: hidden; 
+            overflow-x: hidden;
             overflow-y: auto;
         }
 
