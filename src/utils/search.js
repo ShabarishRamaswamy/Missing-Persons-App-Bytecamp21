@@ -60,12 +60,16 @@ search = async(req, res, next) => {
     // Search from Blogs
     var userBlog = await Blog.find({})
     userBlog.forEach((userBlog) => {
-        if(userBlog.title.indexOf(req.params.query) !== -1){
-            results.push(userCase)
-        }else if(userBlog.content.indexOf(req.params.query) !== -1){
-            results.push(userCase)
-        }else if(userBlog.scope.indexOf(req.params.query) !== -1){
-            results.push(userCase)
+        try{
+            if(userBlog.title.indexOf(req.params.query) !== -1){
+                results.push(userCase)
+            }else if(userBlog.content.indexOf(req.params.query) !== -1){
+                results.push(userCase)
+            }else if(userBlog.scope.indexOf(req.params.query) !== -1){
+                results.push(userCase)
+            }
+        }catch(e){
+            console.log(e)
         }
     })
 
