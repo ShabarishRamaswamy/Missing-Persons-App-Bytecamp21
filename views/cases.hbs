@@ -44,12 +44,9 @@
                 </div>
               <script>
               function searchm()
-              { var url = '/search/'+document.getElementById('query').value;
-                fetch(url)
-    .then(response => {
-console.log(request.results);    })
-    .catch(error => {
-console.log('NO');});};
+              { var url = 'https://ra-missing-persons.herokuapp.com/search/'+document.getElementById('query').value;
+              var win = window.open(url, '_blank');
+              win.focus();}
               </script>
 
         {{#each allCases}}
