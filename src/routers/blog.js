@@ -15,7 +15,9 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
         if(!allBlogs){
             return res.send("You don't have any blogs")
         }else{
-            return res.status(200).send(allBlogs)
+            return res.render('blogs.hbs', {
+                allBlogs
+            })
         }
     }catch(e){
         console.log(e)

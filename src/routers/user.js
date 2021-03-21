@@ -13,6 +13,7 @@ const { urlencoded, json } = require("body-parser");
 const { resolve } = require("path");
 const { uploader, cloudinaryConfig } = require("../utils/cloudinaryConfig");
 const { multerUploads, dataUri } = require('../middlewares/multerUpload');
+const { isArray } = require('util')
 
 /**
  * @method - GET
@@ -186,8 +187,16 @@ router.post('/login', authentication, (req, res) => {
  * @description - UserProfile
  * @access - All 
  */
- router.get('/search/:query', authenticateToken, search, async(req, res) => {
-    res.send(req.results)
+
+function isNotArray(value) {
+    return !Array.isArray(value)
+}
+
+router.get('/search/:query', authenticateToken, search, async (req, res) => {
+    var allCases = req.results.filter(isNotArray)
+    res.render('cases.hbs', {
+        allCases: allCases.map(_case => _case.toJSON())
+    })
 })
 
 /**

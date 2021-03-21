@@ -52,6 +52,8 @@ label {
 
 h2 {
   color: white;
+  width :100%;
+  text-align: center;
 }
 
 .card {
@@ -61,4 +63,10 @@ h2 {
 .card:hover {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(-10px);
+}
+
+.bg-cust{
+  background: transparent;
+  border: 2px outset #06cdd4;
+  color: white;
 }

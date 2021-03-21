@@ -1,9 +1,9 @@
 <style>
-.bg-cust{
-  background: linear-gradient(to top, #000000,#3da7ba);
-  border: 2px outset #06cdd4;
-  color: white;
-}
+    .bg-cust {
+        background: linear-gradient(to top, #000000, #3da7ba);
+        border: 2px outset #06cdd4;
+        color: white;
+    }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
@@ -14,10 +14,10 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse4">
         <div class="navbar-nav">
-          <a href="/" class="nav-item nav-link">Home</a>
-          <a href="/userBlogs" class="nav-item nav-link">Blog</a>
-          <a href="/cases" class="nav-item nav-link active">Cases</a>
-          <a href="/UserCaseStudies" class="nav-item nav-link">Case Studies</a>
+            <a href="/" class="nav-item nav-link">Home</a>
+            <a href="/userBlogs" class="nav-item nav-link">Blog</a>
+            <a href="/cases" class="nav-item nav-link active">Cases</a>
+            <a href="/UserCaseStudies" class="nav-item nav-link">Case Studies</a>
 
         </div>
         <ul class="nav navbar-nav ml-auto">
@@ -25,7 +25,7 @@
                 <a href="/addcase" class="btn btn-light">
                     Add new case
                 </a>
-                <button class="btn btn-outline-light" onclick="window.location.href='/logout'">
+                <button class="btn btn-outline-light" onclick="window.location.href='/logout">
                     <b>LOGOUT</b>
                 </button>
             </li>
@@ -34,20 +34,14 @@
 </nav>
 <div class="container-fluid mb-5 mt-5">
     <div class='row mb-5'>
-      <div class="input-group" style="margin:20px;">
-                  <input type="text" id = "query" class="form-control" placeholder="Search from All Cases">
-                  <div class="input-group-append">
-                    <button onclick="searchm()" class="btn btn-info">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </div>
-                </div>
-              <script>
-              function searchm()
-              { var url = 'https://ra-missing-persons.herokuapp.com/search/'+document.getElementById('query').value;
-              var win = window.open(url, '_blank');
-              win.focus();}
-              </script>
+        <div class="input-group" style="margin:20px;">
+            <input type="text" id="query" class="form-control" placeholder="Search from All Cases">
+            <div class="input-group-append">
+                <button onclick="search()" class="btn btn-info">
+                    <i class= "fa fa-search"></i>
+                </button>
+            </div>
+        </div>
 
         {{#each allCases}}
         <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
@@ -56,9 +50,10 @@
                     {{#if victimImage}}
                     <img class="card-img-top mb-5" src="{{victimImage}}" alt="Card image cap">
                     {{else}}
-                    <img class="card-img-top mb-5" src="/Images/missing.svg" width='150px' height='150px' alt="Card image cap">
+                    <img class="card-img-top mb-5" src="/Images/missing.svg" width='150px' height='150px'
+                        alt="Card image cap">
                     {{/if}}
-                    <div class="mb-2 card-header" >
+                    <div class="mb-2 card-header">
                         <h3 class="card-title">{{victimName}}</h3>
                     </div>
                     <p class="card-text">
@@ -78,3 +73,8 @@
 
     </div>
 </div>
+<script>
+    function search() {
+        window.location.href = '/search/'+document.getElementById('query').value
+    }
+</script>
