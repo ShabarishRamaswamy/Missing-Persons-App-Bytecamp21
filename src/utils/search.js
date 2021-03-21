@@ -62,9 +62,9 @@ search = async(req, res, next) => {
     userBlog.forEach((userBlog) => {
         if(userBlog.title.indexOf(req.params.query) !== -1){
             results.push(userCase)
-        }else if(userCase.content.indexOf(req.params.query) !== -1){
+        }else if(userBlog.content.indexOf(req.params.query) !== -1){
             results.push(userCase)
-        }else if(userCase.scope.indexOf(req.params.query) !== -1){
+        }else if(userBlog.scope.indexOf(req.params.query) !== -1){
             results.push(userCase)
         }
     })
