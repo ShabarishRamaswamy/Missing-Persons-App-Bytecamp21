@@ -22,6 +22,10 @@ router.get("/case", authenticateToken, (req, res) => {
   }
 });
 
+router.get("/analytics", authenticateToken, (req, res) => {
+  res.render('analytics.hbs')
+})
+
 /**
  * @method - POST
  * @route - /case
