@@ -1,3 +1,11 @@
+<style>
+.bg-cust{
+  background: transparent;
+  border: 2px outset #06cdd4;
+  color: white;
+}
+</style>
+
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
     <a href="/" class="navbar-brand">Missing Persons Portal</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse4">
@@ -6,16 +14,16 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse4">
         <div class="navbar-nav">
-            <a href="/" class="nav-item nav-link">Home</a>
-            <a href="/userBlogs" class="nav-item nav-link active">Blog</a>
-            <a href="/cases" class="nav-item nav-link ">Cases</a>
-            <a href="/UserCaseStudies" class="nav-item nav-link">Case Studies</a>
+          <a href="/" class="nav-item nav-link">Home</a>
+          <a href="/userBlogs" class="nav-item nav-link">Blog</a>
+          <a href="/cases" class="nav-item nav-link active">Cases</a>
+          <a href="/UserCaseStudies" class="nav-item nav-link">Case Studies</a>
 
         </div>
         <ul class="nav navbar-nav ml-auto">
             <li>
-                <a href="/addcase" class="btn btn-light">
-                    Add new case
+                <a href="/userBlogs" class="btn btn-light">
+                    Add new Blog
                 </a>
                 <button class="btn btn-outline-light" onclick="window.location.href='/logout'">
                     <b>LOGOUT</b>
@@ -24,6 +32,34 @@
         </ul>
     </div>
 </nav>
-<div>
-  BLOG
+<div class="container-fluid mb-5 mt-5">
+    <div class='row mb-5'>
+
+        {{#each allBlogs}}
+        <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+            <div class="card bg-cust">
+                <div class="card-body" style="text-align:center;">
+                    {{#if victimImage}}
+                    <img class="card-img-top mb-5" src="{{victimImage}}" alt="Card image cap">
+                    {{else}}
+                    <img class="card-img-top mb-5" src="/Images/missing.svg" width='150px' height='150px' alt="Card image cap">
+                    {{/if}}
+                    <div class="mb-2 card-header" >
+                        <h3 class="card-title">{{title}}</h3>
+                    </div>
+                    <p class="card-text">
+                        {{content}}<br>
+                        {{scope}}<br>
+                    </p>
+                    <a href='/cases/{{_id}}' class="btn btn-light">
+                        Learn more
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <p>No cases to display</p>
+        {{/each}}
+
+    </div>
 </div>

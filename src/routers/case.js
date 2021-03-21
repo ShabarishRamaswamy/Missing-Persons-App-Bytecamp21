@@ -131,20 +131,6 @@ router.post("/updateCaseStatus/:id", authenticateToken, async (req, res) => {
 router.get("/addcase", authenticateToken, async (req, res) => {
   res.render("add.hbs");
 });
-/**
- * @method - POST
- * @route - /addCaseImages
- * @description - The Homepage
- * @access - All
- */
-router.post("/addCaseImages/:id", authenticateToken, async (req, res) => {
-  var requiredCase = await Case.findById(req.params.id);
-  if (requiredCase.caseAuthority == req.user._id) {
-    requiredCase.victimImage;
-    return res.status(200).redirect(`/case/ + ${req.params.id}`);
-  }
-  // More Work Here
-});
 
 /**
  * @method - GET

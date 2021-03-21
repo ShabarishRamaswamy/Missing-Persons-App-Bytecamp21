@@ -32,6 +32,7 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
  router.post('/userBlog', authenticateToken, async(req, res) => {
     try{
         var {
+            title,
             content,
             isOfficialBlog,
             scope
@@ -39,6 +40,7 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
 
         var blog = new Blog({
             userId: req.user._id,
+            title,
             content,
             isAuthority: req.user.isAuthority,
             isOfficialBlog,
@@ -115,9 +117,9 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
  * @description - All Blogs
  * @access - All
  */
- router.get('/blogs', authenticateToken, async(req, res) => {
+ router.patch('/blogs/:id', authenticateToken, async(req, res) => {
     if(req.user){
-        const allBlogs = await Blog.find({})
+        const allBlogs = await Blog.findById(req.params.id)
         try{
             var {
                 content,
@@ -134,13 +136,29 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
                 if(scope)
                 blog.scope = scope
 
-            await allBlogs.save()
-            // console.log(user)
-            res.redirect('/userBlogs')
+            if(allBlogs.userId == req.user._id){
+                await allBlogs.save()
+                res.status(200)
+                res.redirect('/blogs')
+            }else{
+                res.status(400).redirect('/blogs')
+            }
         }catch(e){
             console.log(e)
             res.status(500).send()
         }
+    }
+})
+
+
+router.get('/blogs', authenticateToken, async(req, res) => {
+    try{
+        const allBlogs = await Blog.find({})
+        res.render("blogs.hbs", {
+            allBlogs,
+        });
+    }catch(e){
+
     }
 })
 
