@@ -15,7 +15,7 @@
         </div>
         <ul class="nav navbar-nav ml-auto">
             <li>
-                <a href="/userBlogs" class="btn btn-light">
+                <a href="/addBlog" class="btn btn-light">
                     Add new Blog
                 </a>
                 <button class="btn btn-outline-light" onclick="window.location.href='/logout'">
@@ -36,8 +36,8 @@
                         <h3 class="card-title">{{title}}</h3>
                     </div>
                     <p class="card-text">
-                        {{content}}<br>
-                        {{scope}}<br>
+                        {{content}}<br><br>
+                        Scope - {{scope}}<br>
                     </p>
                     <a href='/blog/{{_id}}' class="btn btn-light">
                         Learn more

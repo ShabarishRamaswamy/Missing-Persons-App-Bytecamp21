@@ -11,7 +11,7 @@ const Blog = require('../models/Blog')
  */
 router.get('/userBlogs', authenticateToken, async(req, res) => {
     try{
-        const allBlogs = await Blog.find({ userId: req.user._id })
+        const allBlogs = await Blog.find({ userId: req.user._id }).lean()
         if(!allBlogs){
             return res.send("You don't have any blogs")
         }else{
@@ -23,6 +23,10 @@ router.get('/userBlogs', authenticateToken, async(req, res) => {
         console.log(e)
         res.redirect('/blogs')
     }
+})
+
+router.get('/addBlog', authenticateToken, async (req, res) => {
+    res.render('addblog.hbs')
 })
 
 /**

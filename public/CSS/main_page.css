@@ -70,3 +70,20 @@ h2 {
   border: 2px outset #06cdd4;
   color: white;
 }
+
+.bg-cust1{
+  background: linear-gradient(to top, #000000, #3da7ba);
+  border: 2px outset #06cdd4;
+  color: white;
+}
+
+.addpost {
+    min-width: 100%;
+    max-width: 800px;
+    margin-bottom: 15px;
+    background: transparent;
+    border: 1px outset #4de2eb;
+    padding: 10px;
+    border-radius: 10px;
+
+  }
