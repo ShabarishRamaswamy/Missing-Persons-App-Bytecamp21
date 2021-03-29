@@ -1,5 +1,19 @@
 const mongoose = require('mongoose')
 
+mongoose.connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+})
+.then(() => {
+    console.log('Connected to MongoDB!');
+})
+.catch((err) => {
+    console.error('Error connecting to MongoDB: ', err);
+});
+
+
 module.exports.connect = () => {
     if(process.env.NODE_ENV === 'test'){
         const Mockgoose = require('mockgoose').Mockgoose
@@ -20,19 +34,6 @@ module.exports.connect = () => {
                 console.error('Error connecting to MongoDB: ', err);
             });
         })
-    } else{
-        mongoose.connect(process.env.MONGODB_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true,
-            useFindAndModify: false
-        })
-        .then(() => {
-            console.log('Connected to MongoDB!');
-        })
-        .catch((err) => {
-            console.error('Error connecting to MongoDB: ', err);
-        });
-    }
+    } else{}
 
 }
